@@ -201,54 +201,6 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
         
-        /* YouTube player */
-        .youtube-container {
-            margin-top: 30px;
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-        
-        .youtube-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .music-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-            gap: 15px;
-        }
-        
-        .music-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .music-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .music-title {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #fdbb2d;
-            font-size: 1.2rem;
-        }
-        
         @media (max-width: 768px) {
             #clock {
                 font-size: 3.5rem;
@@ -381,16 +333,6 @@
             <div class="affirmation" id="affirmation">¡Estás preparado! ¡Confía en tu conocimiento!</div>
         </div>
         
-        <!-- YouTube Music Player -->
-        <div class="music-title">Música para estudiar</div>
-        <div class="youtube-container">
-            <iframe id="youtube-player" src="https://www.youtube.com/embed/CmEYf6-3_vw?controls=1&autoplay=0" allowfullscreen></iframe>
-        </div>
-        <div class="music-controls">
-            <button class="music-btn" onclick="changeMusic(0)">Música Concentración</button>
-            <button class="music-btn" onclick="changeMusic(1)">Música Relajante</button>
-            <button class="music-btn" onclick="changeMusic(2)">Música Motivadora</button>
-        </div>
     </div>
     
     <footer>
@@ -444,13 +386,6 @@
             "Confía en tu preparación y en tus habilidades.",
             "Cada repaso te hace más fuerte y seguro.",
             "Tu esfuerzo de hoy determinará tu éxito mañana."
-        ];
-        
-        // YouTube music playlists
-        const musicPlaylists = [
-            "CmEYf6-3_vw", // Música para concentrarse (estudio)
-            "grBFMP3HDZA", // Música relajante
-            "oUONoxFXXXY"  // Música motivadora
         ];
         
         // Update the clock and date
@@ -539,12 +474,6 @@
         function updateAffirmation() {
             const randomIndex = Math.floor(Math.random() * affirmations.length);
             document.getElementById('affirmation').textContent = affirmations[randomIndex];
-        }
-        
-        // Change YouTube music
-        function changeMusic(index) {
-            const player = document.getElementById('youtube-player');
-            player.src = `https://www.youtube.com/embed/${musicPlaylists[index]}?controls=1&autoplay=1`;
         }
         
         // Update all displays
