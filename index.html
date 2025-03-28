@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGEL Exam Countdown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        #clock {
+            font-size: 5rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            border-radius: 10px;
+            letter-spacing: 5px;
+        }
+        
+        .countdown-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .countdown-section h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            color: #fdbb2d;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .countdown-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 5px;
+            padding: 10px 15px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .countdown-label {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #ccc;
+        }
+        
+        .exam-countdown {
+            background-color: rgba(178, 31, 31, 0.3);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .exam-countdown h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Motivational section */
+        .motivational-section {
+            background-color: rgba(29, 53, 87, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .quote-container {
+            margin: 15px 0;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            position: relative;
+            padding: 0 25px;
+            margin-bottom: 10px;
+        }
+        
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 2rem;
+            color: #fdbb2d;
+            position: absolute;
+        }
+        
+        .quote::before {
+            left: 0;
+            top: -10px;
+        }
+        
+        .quote::after {
+            right: 0;
+            bottom: -10px;
+        }
+        
+        .author {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Affirmation section */
+        .affirmation-section {
+            margin-top: 30px;
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(253, 187, 45, 0.2);
+            border-radius: 10px;
+        }
+        
+        .affirmation {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            #clock {
+                font-size: 3.5rem;
+            }
+            
+            .countdown-value {
+                font-size: 1.8rem;
+                min-width: 60px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quote {
+                font-size: 1rem;
+            }
+            
+            .affirmation {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #clock {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-timer {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-value {
+                font-size: 1.5rem;
+                min-width: 50px;
+            }
+            
+            body {
+                padding: 15px 10px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .quote-container {
+                min-height: 120px;
+            }
+        }
+        
+        /* iPhone X and newer specific fixes */
+        @media only screen 
+            and (device-width: 375px) 
+            and (device-height: 812px) 
+            and (-webkit-device-pixel-ratio: 3),
+            only screen 
+            and (device-width: 414px) 
+            and (device-height: 896px) 
+            and (-webkit-device-pixel-ratio: 2),
+            only screen 
+            and (device-width: 390px) 
+            and (device-height: 844px) 
+            and (-webkit-device-pixel-ratio: 3) {
+            body {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Preparación EGEL</h1>
+        
+        <div id="current-date" style="text-align: center; font-size: 1.5rem; margin-bottom: 15px;"></div>
+        
+        <div class="clock-container">
+            <div id="clock">00:00:00</div>
+        </div>
+        
+        <div class="countdown-section">
+            <h2>Recordatorio: 7:30 AM Llegada</h2>
+            <div class="countdown-timer" id="countdown-7-30">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours-7-30">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes-7-30">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds-7-30">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exam-countdown">
+            <h2>Cuenta Regresiva para el Examen EGEL</h2>
+            <div class="countdown-timer" id="exam-countdown">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="exam-days">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="exam-hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="exam-minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="exam-seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="motivational-section">
+            <h3 style="color: #fdbb2d; margin-bottom: 15px;">Frase del día</h3>
+            <div class="quote-container" id="quote-container">
+                <div class="quote">El éxito no es la clave de la felicidad. La felicidad es la clave del éxito. Si amas lo que haces, tendrás éxito.</div>
+                <div class="author">- Albert Schweitzer</div>
+            </div>
+        </div>
+        
+        <div class="affirmation-section">
+            <div class="affirmation" id="affirmation">¡Estás preparado! ¡Confía en tu conocimiento!</div>
+        </div>
+        
+    </div>
+    
+    <footer>
+        <p>¡Éxito en tu examen EGEL! Comparte esta página con tus amigos.</p>
+    </footer>
+
+    <script>
+        // Array of motivational quotes
+        const quotes = [
+            {
+                text: "El éxito no es la clave de la felicidad. La felicidad es la clave del éxito. Si amas lo que haces, tendrás éxito.",
+                author: "Albert Schweitzer"
+            },
+            {
+                text: "No importa lo lento que vayas, siempre y cuando no te detengas.",
+                author: "Confucio"
+            },
+            {
+                text: "No esperes. El momento nunca será el indicado.",
+                author: "Napoleon Hill"
+            },
+            {
+                text: "El conocimiento es poder.",
+                author: "Francis Bacon"
+            },
+            {
+                text: "El fracaso es solo la oportunidad de comenzar de nuevo de forma más inteligente.",
+                author: "Henry Ford"
+            },
+            {
+                text: "La educación es el arma más poderosa que puedes usar para cambiar el mundo.",
+                author: "Nelson Mandela"
+            },
+            {
+                text: "El aprendizaje es como remar contra corriente: en cuanto se deja, se retrocede.",
+                author: "Edward Benjamin Britten"
+            },
+            {
+                text: "Si crees que la educación es cara, prueba con la ignorancia.",
+                author: "Derek Bok"
+            }
+        ];
+        
+        // Array of affirmations
+        const affirmations = [
+            "¡Estás preparado! ¡Confía en tu conocimiento!",
+            "Cada día de estudio te acerca más al éxito.",
+            "Tu dedicación dará frutos. ¡Sigue adelante!",
+            "Visualiza tu éxito en el examen EGEL.",
+            "Eres capaz y estás listo para este desafío.",
+            "Confía en tu preparación y en tus habilidades.",
+            "Cada repaso te hace más fuerte y seguro.",
+            "Tu esfuerzo de hoy determinará tu éxito mañana."
+        ];
+        
+        // Update the clock and date
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // Update the current date
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('es-ES', options);
+            document.getElementById('current-date').textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+        }
+        
+        // Calculate time remaining for a specific time
+        function getTimeRemaining(targetHour, targetMinute) {
+            const now = new Date();
+            let targetDate = new Date(now);
+            
+            targetDate.setHours(targetHour, targetMinute, 0);
+            
+            // If the target time has already passed today, set for tomorrow
+            if (now > targetDate) {
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
+            
+            const diff = targetDate - now;
+            
+            return {
+                total: diff,
+                hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((diff / (1000 * 60)) % 60),
+                seconds: Math.floor((diff / 1000) % 60)
+            };
+        }
+        
+        // Update the countdown for specific times
+        function updateCountdown(id, targetHour, targetMinute) {
+            const timeRemaining = getTimeRemaining(targetHour, targetMinute);
+            
+            document.getElementById(`hours-${id}`).textContent = String(timeRemaining.hours).padStart(2, '0');
+            document.getElementById(`minutes-${id}`).textContent = String(timeRemaining.minutes).padStart(2, '0');
+            document.getElementById(`seconds-${id}`).textContent = String(timeRemaining.seconds).padStart(2, '0');
+        }
+        
+        // Set the EGEL exam date - March 29, 2025
+        const examDate = new Date("March 29, 2025 09:00:00");
+        
+        function updateExamCountdown() {
+            const now = new Date();
+            const diff = examDate - now;
+            
+            if (diff <= 0) {
+                // Exam day has arrived
+                document.getElementById('exam-days').textContent = '00';
+                document.getElementById('exam-hours').textContent = '00';
+                document.getElementById('exam-minutes').textContent = '00';
+                document.getElementById('exam-seconds').textContent = '00';
+            } else {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('exam-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('exam-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('exam-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('exam-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+        
+        // Update motivational quote
+        function updateQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quoteElement = document.getElementById('quote-container');
+            quoteElement.innerHTML = `
+                <div class="quote">${quotes[randomIndex].text}</div>
+                <div class="author">- ${quotes[randomIndex].author}</div>
+            `;
+        }
+        
+        // Update affirmation
+        function updateAffirmation() {
+            const randomIndex = Math.floor(Math.random() * affirmations.length);
+            document.getElementById('affirmation').textContent = affirmations[randomIndex];
+        }
+        
+        // Update all displays
+        function updateAll() {
+            updateClock();
+            updateCountdown('7-30', 7, 30);
+            updateExamCountdown();
+        }
+        
+        // Initial updates
+        updateAll();
+        updateQuote();
+        updateAffirmation();
+        
+        // Set intervals for updates
+        setInterval(updateAll, 1000);
+        setInterval(updateQuote, 30000); // Change quote every 30 seconds
+        setInterval(updateAffirmation, 15000); // Change affirmation every 15 seconds
+    </script>
+</body>
+</html>
